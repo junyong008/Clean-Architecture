@@ -1,0 +1,62 @@
+[versions]
+# AndroidX
+androidx-core = "1.12.0"
+androidx-appcompat = "1.6.1"
+androidx-lifecycle = "2.7.0"
+androidx-constraintLayout = "2.1.4"
+androidx-activity = "1.8.2"
+androidx-fragment = "1.6.2"
+
+# Test
+junit = "4.13.2"
+androidJunit = "1.1.5"
+espresso = "3.5.1"
+
+# Google
+material = "1.11.0"
+
+# Hilt
+hilt = "2.48"
+
+# Plugin
+android-application = "8.2.2"
+ksp = "1.9.22-1.0.17"
+kotlin = "1.9.22"
+
+
+[libraries]
+# Dependencies of the included build-logic
+android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "android-application" }
+kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
+
+# AndroidX
+androidx-core = { module = "androidx.core:core-ktx", version.ref = "androidx-core" }
+androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidx-appcompat" }
+androidx-lifecycleLiveData = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "androidx-lifecycle" }
+androidx-lifecycleViewModel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidx-lifecycle" }
+androidx-constraintLayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "androidx-constraintLayout" }
+androidx-activity = { module = "androidx.activity:activity-ktx", version.ref = "androidx-activity" }
+androidx-fragment = { module = "androidx.fragment:fragment-ktx", version.ref = "androidx-fragment" }
+
+# Test
+junit = { module = "junit:junit", version.ref = "junit" }
+androidJunit = { module = "androidx.test.ext:junit", version.ref = "androidJunit" }
+espresso = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso" }
+
+# Google
+material = { module = "com.google.android.material:material", version.ref = "material" }
+
+# Hilt
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
+hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
+
+[bundles]
+lifecycle = ["androidx-lifecycleLiveData", "androidx-lifecycleViewModel"]
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "android-application" }
+android-library = { id = "com.android.library", version.ref = "android-application" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
