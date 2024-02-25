@@ -6,6 +6,9 @@ androidx-lifecycle = "2.7.0"
 androidx-constraintLayout = "2.1.4"
 androidx-activity = "1.8.2"
 androidx-fragment = "1.6.2"
+androidx-paging = "3.2.1"
+androidx-room = "2.6.1"
+androidx-datastore = "1.0.0"
 
 # Test
 junit = "4.13.2"
@@ -23,6 +26,11 @@ android-application = "8.2.2"
 ksp = "1.9.22-1.0.17"
 kotlin = "1.9.22"
 
+# Etc
+glide = "4.16.0"
+retrofit ="2.9.0"
+okhttp3 = "4.11.0"
+
 
 [libraries]
 # Dependencies of the included build-logic
@@ -38,6 +46,12 @@ androidx-lifecycleViewModel = { module = "androidx.lifecycle:lifecycle-viewmodel
 androidx-constraintLayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "androidx-constraintLayout" }
 androidx-activity = { module = "androidx.activity:activity-ktx", version.ref = "androidx-activity" }
 androidx-fragment = { module = "androidx.fragment:fragment-ktx", version.ref = "androidx-fragment" }
+androidx-paging = { module = "androidx.paging:paging-runtime", version.ref = "androidx-paging" }
+androidx-room = { module = "androidx.room:room-runtime", version.ref = "androidx-room" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "androidx-room" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "androidx-room" }
+androidx-room-paging = { module = "androidx.room:room-paging", version.ref = "androidx-room" }
+androidx-datastore = { module = "androidx.datastore:datastore-preferences", version.ref = "androidx-datastore" }
 
 # Test
 junit = { module = "junit:junit", version.ref = "junit" }
@@ -51,8 +65,18 @@ material = { module = "com.google.android.material:material", version.ref = "mat
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
 
+# Etc
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+retrofit-converter = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+okhttp3 = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp3" }
+
+
 [bundles]
 lifecycle = ["androidx-lifecycleLiveData", "androidx-lifecycleViewModel"]
+room = ["androidx-room", "androidx-room-ktx", "androidx-room-paging"]
+retrofit = ["retrofit", "retrofit-converter"]
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "android-application" }

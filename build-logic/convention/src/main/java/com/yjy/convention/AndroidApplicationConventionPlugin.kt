@@ -16,6 +16,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                 apply("com.android.application")
                 apply("org.jetbrains.kotlin.android")
                 apply("android.hilt")
+                apply("kotlin-kapt")
             }
 
             extensions.configure<ApplicationExtension> {
@@ -60,6 +61,9 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                     add("implementation", libs.findLibrary("androidx-activity").get())
                     add("implementation", libs.findLibrary("androidx-fragment").get())
                     add("implementation", libs.findLibrary("androidx-constraintLayout").get())
+                    add("implementation", libs.findLibrary("androidx-paging").get())
+
+                    add("implementation", libs.findLibrary("glide").get())
                 }
             }
         }

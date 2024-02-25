@@ -22,6 +22,8 @@ class AndroidDomainConventionPlugin : Plugin<Project> {
                 val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
                 dependencies {
                     add("testImplementation", libs.findLibrary("junit").get())
+
+                    add("implementation", libs.findLibrary("androidx-paging").get())
                 }
             }
         }

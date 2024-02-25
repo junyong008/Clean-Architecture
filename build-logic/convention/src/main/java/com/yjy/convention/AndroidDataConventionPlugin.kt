@@ -24,6 +24,13 @@ class AndroidDataConventionPlugin : Plugin<Project> {
                     add("implementation", project(":domain"))
 
                     add("testImplementation", libs.findLibrary("junit").get())
+
+                    add("implementation", libs.findBundle("room").get())
+                    add("ksp", libs.findLibrary("androidx-room-compiler").get())
+                    add("implementation", libs.findBundle("retrofit").get())
+                    add("implementation", libs.findLibrary("okhttp3").get())
+                    add("implementation", libs.findLibrary("androidx-paging").get())
+                    add("implementation", libs.findLibrary("androidx-datastore").get())
                 }
             }
         }
