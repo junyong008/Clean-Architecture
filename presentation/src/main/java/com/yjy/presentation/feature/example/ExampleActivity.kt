@@ -5,11 +5,9 @@ import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.paging.LoadState
 import com.yjy.domain.model.GithubRepo
-import com.yjy.domain.model.Joke
 import com.yjy.presentation.R
 import com.yjy.presentation.base.BaseActivity
 import com.yjy.presentation.databinding.ActivityExampleBinding
-import com.yjy.presentation.util.UiState
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -53,43 +51,8 @@ class ExampleActivity : BaseActivity<ActivityExampleBinding>(R.layout.activity_e
     }
 
     override fun observeFlows() {
-        collectLatestFlow(exampleViewModel.number) {
-            binding.textViewDataStoreValue.text = it.toString()
-        }
         collectLatestFlow(exampleViewModel.githubRepos) {
             githubRepoAdapter.submitData(it)
-        }
-    }
-
-    override fun observeStateFlows() {
-        collectLatestStateFlow(exampleViewModel.joke) { state ->
-            when(state) {
-                is UiState.Ready -> {
-                    binding.progressJoke.isVisible = false
-                    binding.textViewJoke.isVisible = true
-                    binding.buttonGetJoke.isEnabled = true
-                    binding.textViewJoke.text = ""
-                }
-                is UiState.Loading -> {
-                    binding.progressJoke.isVisible = true
-                    binding.textViewJoke.isVisible = false
-                    binding.buttonGetJoke.isEnabled = false
-                }
-                is UiState.Success<*> -> {
-                    binding.progressJoke.isVisible = false
-                    binding.textViewJoke.isVisible = true
-                    binding.buttonGetJoke.isEnabled = true
-                    binding.textViewJoke.text = (state.data as Joke).content
-                }
-                is UiState.Error -> {
-                    binding.progressJoke.isVisible = false
-                    binding.textViewJoke.isVisible = true
-                    binding.buttonGetJoke.isEnabled = true
-                    // 에러 메시지를 지속적으로 표기해야 되는 경우에만..
-                    // 토스트 메시지 같은걸 여기서 설정하면 CC가 일어날때마다 계속 메시지가 발생함으로 안됨.
-                    binding.textViewJoke.text = state.message
-                }
-            }
         }
     }
 

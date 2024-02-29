@@ -18,11 +18,14 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+
 
 @HiltViewModel
 class ExampleViewModel @Inject constructor(
@@ -32,7 +35,12 @@ class ExampleViewModel @Inject constructor(
     private val getGithubReposUseCase: GetGithubReposUseCase
 ) : ViewModel() {
 
-    val number: Flow<Int> = getNumberUseCase()
+    val number: StateFlow<Int> = getNumberUseCase().stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(),
+        initialValue = 0
+    )
+
     fun addNumber() = viewModelScope.launch { addNumberUseCase(1) }
 
     private val _joke = MutableStateFlow<UiState>(UiState.Ready)
